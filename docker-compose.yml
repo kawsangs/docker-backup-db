@@ -1,0 +1,21 @@
+version: "3.9"
+
+volumes:
+  bundle:
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    stdin_open: true
+    tty: true
+    env_file: app.env
+    logging:
+      driver: json-file
+      options:
+        max-size: 1m
+        max-file: '10'
