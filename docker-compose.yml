@@ -1,16 +1,23 @@
 version: "3.9"
 
 volumes:
-  bundle:
+  db:
 
 services:
+  db:
+    image: postgres:14.4
+    volumes:
+      - 'db:/var/lib/postgresql/data'
+    environment:
+      - POSTGRES_PASSWORD=123456
   app:
     build:
       context: .
       dockerfile: Dockerfile.dev
     volumes:
       - .:/app
-      - bundle:/usr/local/bundle
+    depends_on:
+      - db
     stdin_open: true
     tty: true
     env_file: app.env

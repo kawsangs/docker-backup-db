@@ -2,7 +2,7 @@ FROM ruby:3.1.2
 
 LABEL maintainer="Kakada CHHEANG <kakada@kawsang.com>"
 
-RUN apt-get update -qq && apt-get install -y build-essential
+RUN apt-get update -qq && apt-get install -y build-essential postgresql-client
 
 RUN mkdir /app
 WORKDIR /app
